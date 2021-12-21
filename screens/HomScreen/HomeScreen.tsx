@@ -2,8 +2,9 @@ import * as React from "react";
 
 import {FlatList, Image} from "react-native"
 import { Text, View } from '../../components/Themed';
-import styles from "./Styles"
+import styles from "./HomeScreenStyles"
 import categories from "../../assets/data/categories"
+import HomeCategory from "../../components/HomeCategory/HomeCategory";
 
 const firstCategory = categories.items[0];
 
@@ -11,15 +12,11 @@ function HomeScreen(){
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Popular On Netflix</Text>
+      {/* List of categories */}
       <FlatList
-        data={firstCategory.movies}
-        renderItem={({item}) => (
-          <Image style={styles.image} source={{uri: item.poster}}/>
-        )}
-        horizontal={true}
-      />
-      
+        data={categories.items}
+        renderItem={({item}) => <HomeCategory category={item}/>}
+      />      
     </View>
   );
 }
